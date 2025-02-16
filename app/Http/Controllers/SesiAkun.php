@@ -29,7 +29,7 @@ class SesiAkun extends Controller
             return redirect()->intended();
         }
 
-        return back()->with('loginError', 'Username or');
+        return back()->with('loginError', 'Username or Password is not correctly or not registered yet');
     }
 
     public function logout(Request $request)
