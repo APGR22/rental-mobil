@@ -30,7 +30,7 @@ Route::post('/sewa/review', function (Request $request) {
     $data = $request->all();
     return view('main.sewa.review', compact('data'));
 })->middleware('auth')->name('sewa.review');
-Route::post('/sewa/send', [SewaController::class, 'store'])->name('sewa.send');
+Route::post('/sewa/send', [SewaController::class, 'store'])->middleware('auth')->name('sewa.send');
 
 Route::post('/login/send', [SesiAkun::class, 'login'])->name('login.send');
 Route::post('/register/send', [SesiAkun::class, 'register'])->name('register.send');

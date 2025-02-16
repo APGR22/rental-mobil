@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sewa;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SewaController extends Controller
 {
@@ -40,12 +41,14 @@ class SewaController extends Controller
             'penyewa' => Auth::user()->nama,
             'mobil' => $request->mobil,
             'dengan_supir' => $request->dengan_supir === 'on' ? true : false,
-            'tanggal_pinjam' => $request->tanggal_pinjam,
+            'tanggal_pinjam' => $request->tanggal_sewa,
             'tanggal_kembali' => $request->tanggal_kembali,
             'dp' => 10, //nilai statis sementara
             'diskon' => 0, //nilai statis sementara
             'total' => 1000 //nilai statis sementara
         ]);
+
+        return redirect()->route('index');
     }
 
     /**
