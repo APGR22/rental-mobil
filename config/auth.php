@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * https://laracasts.com/discuss/channels/laravel/using-auth-on-a-different-connection-or-database
+ */
+
 return [
 
     /*
@@ -14,7 +18,7 @@ return [
     */
 
     'defaults' => [
-        // 'guard' => 'web',
+        // 'guard' => 'web', //default
         'guard' => 'custom_web',
         'passwords' => 'users',
     ],
@@ -70,6 +74,7 @@ return [
             'model' => App\Models\User::class,
         ],
         'akuns' => [
+            // 'driver' => 'eloquent',
             'driver' => 'database',
             // 'model' => App\Models\Akun::class,
             'table' => 'akuns',

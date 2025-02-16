@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Akun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AkunController extends Controller
 {
@@ -43,7 +44,7 @@ class AkunController extends Controller
             'email' => $credentials['email'],
             'no_telp' => $credentials['no_telp'],
             'username' => $credentials['username'],
-            'password' => $credentials['password'],
+            'password' => Hash::make($credentials['password']),
             'created_at' => now(),
             'updated_at' => now()
         ]);

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('akuns', function (Blueprint $table) {
             $table->id();
-            $table->rememberToken(); //required by Laravel
+            $table->rememberToken(); //required by Laravel: https://stackoverflow.com/questions/23953177/laravel-remember-token-exists-but-still-error
             $table->string('no_ktp');
             $table->string('nama');
             $table->date('tanggal_lahir');

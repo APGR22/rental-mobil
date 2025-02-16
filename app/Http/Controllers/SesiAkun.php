@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * https://stackoverflow.com/questions/34116211/laravel-say-that-auth-guard-is-not-defined
+ * https://laracasts.com/discuss/channels/laravel/using-auth-on-a-different-connection-or-database
+ */
+
 namespace App\Http\Controllers;
 use App\Http\Controllers\AkunController;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +27,9 @@ class SesiAkun extends Controller
             ]
         );
 
+        /**
+         * https://stackoverflow.com/questions/18006597/laravel-authattempt-always-false
+         */
         if (Auth::attempt($credentials))
         {
             $request->session()->regenerate();
@@ -67,17 +75,9 @@ class SesiAkun extends Controller
 
         $akun = AkunController::store($credentials);
 
+        /**
+         */
         Auth::login($akun);
-
-        // if (Auth::attempt([
-        //     'username' => $credentials['username'],
-        //     'password' => $credentials['password'],
-        // ]))
-        // {
-        //     return redirect()->intended('index');
-        // }
-
-        // dd($credentials, $akun);
 
         return redirect()->intended();
     }
