@@ -51,6 +51,7 @@ class Akun extends Authenticatable
      */
     protected $casts = [
         'no_ktp' => 'string',
+        'tanggal_lahir' => 'date',
         'no_telp' => 'string'
     ];
 }

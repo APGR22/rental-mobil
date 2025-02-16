@@ -51,14 +51,15 @@ class AkunController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the resources.
      *
-     * @param  \App\Models\Akun  $akun
-     * @return \Illuminate\Http\Response
+     * @return mixed
      */
-    public function show(Akun $akun)
+    public function show()
     {
-        //
+        $akun_all = Akun::all();
+        $akun_l = DB::table('akuns')->get();
+        return view('/', compact('akun_all'));
     }
 
     /**

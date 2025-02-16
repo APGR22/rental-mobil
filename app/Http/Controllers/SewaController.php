@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sewa;
+use Auth;
 use Illuminate\Http\Request;
 
 class SewaController extends Controller
@@ -35,7 +36,16 @@ class SewaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('sewas')->insert([
+            'penyewa' => Auth::user()->nama,
+            'mobil' => $request->mobil,
+            'dengan_supir' => $request->dengan_supir === 'on' ? true : false,
+            'tanggal_pinjam' => $request->tanggal_pinjam,
+            'tanggal_kembali' => $request->tanggal_kembali,
+            'dp' => 10, //nilai statis sementara
+            'diskon' => 0, //nilai statis sementara
+            'total' => 1000 //nilai statis sementara
+        ]);
     }
 
     /**

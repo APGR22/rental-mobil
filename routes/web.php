@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\SewaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SesiAkun;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,13 @@ Route::view('/test', 'main.test')->name('test');
 
 Route::view('/login', 'main.session.login')->middleware('guest')->name('login');
 Route::view('/register', 'main.session.register')->middleware('guest')->name('register');
+
+Route::view('/sewa', 'main.sewa.sewa')->middleware('auth')->name('sewa');
+Route::post('/sewa/review', function (Request $request) {
+    $data = $request->all();
+    return view('main.sewa.review', compact('data'));
+})->middleware('auth')->name('sewa.review');
+Route::post('/sewa/send', [SewaController::class, 'store'])->name('sewa.send');
 
 Route::post('/login/send', [SesiAkun::class, 'login'])->name('login.send');
 Route::post('/register/send', [SesiAkun::class, 'register'])->name('register.send');
