@@ -44,7 +44,7 @@ class AkunController extends Controller
             'email' => $credentials['email'],
             'no_telp' => $credentials['no_telp'],
             'username' => $credentials['username'],
-            'password' => Hash::make($credentials['password']),
+            'password' => Hash::make($credentials['password']), //https://stackoverflow.com/questions/18006597/laravel-authattempt-always-false
             'created_at' => now(),
             'updated_at' => now()
         ]);

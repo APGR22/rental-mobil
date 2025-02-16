@@ -55,7 +55,7 @@ class SesiAkun extends Controller
                 'nama' => 'required',
                 'tanggal_lahir' => 'required',
                 'email' => 'required',
-                'no_telp' => 'required|numeric|min:0|digits_between:10,11',
+                'no_telp' => 'required|numeric|min:0|digits_between:10,11', //https://stackoverflow.com/questions/27614936/laravel-rule-validation-for-numbers
                 'username' => 'required',
                 'password' => 'required'
             ],
@@ -73,10 +73,12 @@ class SesiAkun extends Controller
             ]
         );
 
+        /**
+         * https://www.youtube.com/watch?v=icA17pYizno
+         */
+
         $akun = AkunController::store($credentials);
 
-        /**
-         */
         Auth::login($akun);
 
         return redirect()->intended();
