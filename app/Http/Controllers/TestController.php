@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sewa;
-use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class SewaController extends Controller
+class TestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,30 +34,16 @@ class SewaController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('sewas')->insert([
-            'penyewa' => Auth::user()->nama,
-            'mobil' => $request->mobil,
-            'dengan_supir' => $request->dengan_supir === 'on' ? true : false,
-            'tanggal_pinjam' => $request->tanggal_sewa,
-            'tanggal_kembali' => $request->tanggal_kembali,
-            'dp' => 10, //nilai statis sementara
-            'diskon' => 0, //nilai statis sementara
-            'total' => 1000 //nilai statis sementara
-        ]);
-
-        Auth::user()->first_time = 0;
-        AkunController::updateData(Auth::user()->id, 'first_time', Auth::user()->first_time);
-
-        return redirect()->route('index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Sewa  $sewa
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Sewa $sewa)
+    public function show($id)
     {
         //
     }
@@ -68,10 +51,10 @@ class SewaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Sewa  $sewa
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sewa $sewa)
+    public function edit($id)
     {
         //
     }
@@ -80,10 +63,10 @@ class SewaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Sewa  $sewa
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sewa $sewa)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -91,10 +74,10 @@ class SewaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Sewa  $sewa
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sewa $sewa)
+    public function destroy($id)
     {
         //
     }

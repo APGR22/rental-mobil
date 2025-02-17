@@ -26,6 +26,7 @@ class SewaSeeder extends Seeder
             'username' => 'a',
             'password' => Hash::make('1'),
             'is_admin' => false,
+            'first_time' => true,
             'created_at' => now(),
             'updated_at' => now()
         ]);

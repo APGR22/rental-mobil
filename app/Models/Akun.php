@@ -24,7 +24,9 @@ class Akun extends Authenticatable
         'email',
         'no_telp',
         'username',
-        'password'
+        'password',
+
+        'first_time',
     ];
 
     protected $guarded = [

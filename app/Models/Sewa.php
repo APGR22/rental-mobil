@@ -21,7 +21,9 @@ class Sewa extends Model
     ];
 
     protected $casts = [
+        'dengan_supir' => 'boolean',
         'tanggal_pinjam' => 'date',
         'tanggal_kembali' => 'date',
+        'first_time' => 'boolean',
     ];
 }

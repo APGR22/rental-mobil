@@ -6,29 +6,10 @@ use App\Models\Akun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use \Illuminate\Contracts\Auth\Authenticatable;
 
 class AkunController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -63,36 +44,37 @@ class AkunController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Update the specified resource in storage.
      *
-     * @param  \App\Models\Akun  $akun
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @param string $column
+     * @param mixed $value
      */
-    public function edit(Akun $akun)
+    public static function updateData(int $id, string $column, mixed $value)
     {
-        //
+        Akun::find($id)->update([
+            $column => $value
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Akun  $akun
+     * @param  \Illuminate\Contracts\Auth\Authenticatable
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Akun $akun)
+    public static function updateWithUser(Authenticatable $user)
     {
-        //
-    }
+        Akun::find($user->id)->update([
+            'no_ktp' => $user->no_ktp,
+            'nama' => $user->nama,
+            'tanggal_lahir' => $user->tanggal_lahir,
+            'email' => $user->email,
+            'no_telp' => $user->no_telp,
+            'username' => $user->username,
+            'password' => $user->password,
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Akun  $akun
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Akun $akun)
-    {
-        //
+            'first_time' => $user->first_time,
+        ]);
     }
 }
