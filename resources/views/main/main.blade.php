@@ -6,4 +6,8 @@
 
 <br><br><br>
 
-<a href="{{ route('sewa') }}"><button>Sewa</button></a>
+@if(Auth::user()->is_admin == 1)
+    <a href="{{ route('terima') }}"><button>Terima</button></a>
+@else
+    <a href="{{ route('sewa') }}"><button>Sewa</button></a>
+@endif

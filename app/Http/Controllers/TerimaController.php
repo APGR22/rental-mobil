@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Terima;
+use App\Models\Sewa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
+use URL;
 
 class TerimaController extends Controller
 {
@@ -31,11 +35,19 @@ class TerimaController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'tanggal_dikembalikan' => 'required'
+            ],
+            [
+                'tanggal_dikembalikan.required' => '\'Tanggal dikembalikan\' harus diisi untuk dikonfirmasi'
+            ]
+        );
+
+        return redirect()->route('index');
     }
 
     /**
