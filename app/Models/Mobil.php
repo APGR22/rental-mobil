@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Denda extends Model
+class Mobil extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'penyewa',
-        'keterlambatan',
-        'kerusakan',
-        'mobil',
-        'total_benda',
+        'tipe',
+        'sedang_disewa',
+        'sedang_perbaikan',
+        'harga',
     ];
 
     protected $casts = [
-        'keterlambatan' => 'date',
+        'sedang_disewa' => 'boolean',
+        'sedang_perbaikan' => 'boolean',
     ];
 }

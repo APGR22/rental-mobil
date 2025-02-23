@@ -13,7 +13,7 @@ class Sewa extends Model
         'penyewa', /*Ditangani oleh sistem dengan 'nama'*/
         'mobil',
         'dengan_supir', /*0: tanpa supir*/
-        'tanggal_pinjam',
+        'tanggal_sewa',
         'tanggal_kembali',
         'dp',
         'diskon',
@@ -22,7 +22,7 @@ class Sewa extends Model
 
     protected $casts = [
         'dengan_supir' => 'boolean',
-        'tanggal_pinjam' => 'date',
+        'tanggal_sewa' => 'date',
         'tanggal_kembali' => 'date',
         'first_time' => 'boolean',
     ];

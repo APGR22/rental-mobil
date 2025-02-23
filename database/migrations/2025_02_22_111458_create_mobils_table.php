@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dendas', function (Blueprint $table) {
+        Schema::create('mobils', function (Blueprint $table) {
             $table->id();
-            $table->string('penyewa');
-            $table->boolean('keterlambatan');
-            $table->boolean('kerusakan');
-            $table->string('mobil');
-            $table->string('total_denda');
+            $table->string('tipe');
+            $table->boolean('sedang_disewa')->default(false);
+            $table->boolean('sedang_perbaikan')->default(false);
+            $table->unsignedInteger('harga');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dendas');
+        Schema::dropIfExists('mobils');
     }
 };

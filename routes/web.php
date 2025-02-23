@@ -5,9 +5,6 @@ use App\Http\Controllers\TerimaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SesiAkun;
 use Illuminate\Http\Request;
-
-use App\Models\Sewa;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,26 +22,28 @@ use App\Models\Sewa;
 Route::view('/', 'main.main')->middleware('auth')->name('index');
 Route::view('/test', 'main.test')->name('test');
 
+
+
 Route::view('/login', 'main.session.login')->middleware('guest')->name('login');
 Route::view('/register', 'main.session.register')->middleware('guest')->name('register');
 
-Route::view('/sewa', 'main.sewa.sewa')->middleware('auth')->name('sewa');
-Route::post('/sewa/review', function (Request $request) {
-    $data = $request->all();
-    return view('main.sewa.review', compact('data'));
-})->middleware('auth')->name('sewa.review');
+
+
+Route::get('/sewa', [SewaController::class, 'create'])->middleware('auth')->name('sewa');
+Route::post('/sewa/review', [SewaController::class, 'review'])->middleware('auth')->name('sewa.review');
 Route::post('/sewa/send', [SewaController::class, 'store'])->middleware('auth')->name('sewa.send');
 
-Route::get('/terima', function() {
-    $sewas = Sewa::all();
-    return view('main.terima.terima', compact('sewas'));
-})->middleware('admin')->name('terima');
-Route::get('/terima/review', function() {
-    $penyewa = request()->get('penyewa');
-    $sewa = Sewa::where('penyewa', '=', $penyewa)->first();
-    return view('main.terima.review', compact('sewa'));
-})->middleware('admin')->name('terima.review');
+
+
+Route::get('/daftar_sewa', [SewaController::class, 'index'])->middleware('admin')->name('sewa.list');
+
+
+
+Route::get('/terima', [TerimaController::class, 'create'])->middleware('admin')->name('terima');
+Route::post('/terima/review', [TerimaController::class, 'review'])->middleware('admin')->name('terima.review');
 Route::post('/terima/send', [TerimaController::class, 'store'])->middleware('admin')->name('terima.send');
+
+
 
 Route::post('/login/send', [SesiAkun::class, 'login'])->name('login.send');
 Route::post('/register/send', [SesiAkun::class, 'register'])->name('register.send');

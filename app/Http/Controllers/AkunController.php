@@ -50,7 +50,7 @@ class AkunController extends Controller
      * @param string $column
      * @param mixed $value
      */
-    public static function updateData(int $id, string $column, mixed $value)
+    public static function updateColumn(int $id, string $column, mixed $value)
     {
         Akun::find($id)->update([
             $column => $value
@@ -61,7 +61,6 @@ class AkunController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Contracts\Auth\Authenticatable
-     * @return \Illuminate\Http\Response
      */
     public static function updateWithUser(Authenticatable $user)
     {
@@ -76,5 +75,10 @@ class AkunController extends Controller
 
             'first_time' => $user->first_time,
         ]);
+    }
+
+    public static function getWithColumn(string $column, mixed $value)
+    {
+        return Akun::where($column, '=', $value)->first();
     }
 }

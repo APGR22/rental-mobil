@@ -20,10 +20,10 @@ return new class extends Migration
         Schema::create('terimas', function (Blueprint $table) {
             $table->id();
             $table->string('penyewa');
-            $table->string('kd_mobil');
-            $table->unsignedInteger('id_supir');
-            $table->date('tgl_pinjam');
-            $table->date('tgl_kembali');
+            $table->string('mobil');
+            $table->boolean('dengan_supir');
+            $table->date('tanggal_sewa');
+            $table->date('tanggal_kembali');
             $table->unsignedInteger('diskon');
             $table->unsignedInteger('total');
         });

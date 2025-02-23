@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('penyewa');
             $table->string('mobil');
             $table->boolean('dengan_supir');
-            $table->date('tanggal_pinjam');
+            $table->date('tanggal_sewa');
             $table->date('tanggal_kembali');
             $table->unsignedInteger('dp');
             $table->unsignedInteger('diskon');

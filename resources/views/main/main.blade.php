@@ -7,7 +7,7 @@
 <br><br><br>
 
 @if(Auth::user()->is_admin == 1)
-    <a href="{{ route('terima') }}"><button>Terima</button></a>
+    <a href="{{ route('sewa.list') }}"><button>Daftar sewa</button></a>
 @else
     <a href="{{ route('sewa') }}"><button>Sewa</button></a>
 @endif
