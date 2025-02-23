@@ -12,7 +12,7 @@ class Terima extends Model
     protected $fillable = [
         'penyewa',
         'mobil',
-        'dengan_supir',
+        'supir',
         'tanggal_sewa',
         'tanggal_kembali',
         'diskon',
@@ -20,7 +20,6 @@ class Terima extends Model
     ];
 
     protected $casts = [
-        'dengan_supir' => 'boolean',
         'tanggal_sewa' => 'date',
         'tanggal_kembali' => 'date',
     ];

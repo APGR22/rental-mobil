@@ -29,8 +29,19 @@
     @enderror
     <br>
 
-    <input type="checkbox" name="supir" id="supir" @if(old('supir') === 'on') checked @endif>
-    <label for="supir">Supir</label><br>
+    <label for="supir">Supir (kosong = tanpa supir)</label>
+    <input list="supirs" name="supir" id="supir" value="{{ old('supir') }}">
+        <datalist id="supirs">
+            @foreach ($supirs as $supir)
+                @if(!$supir->sedang_bekerja)
+                    <option value="{{ $supir->nama }}">{{ $supir->harga }}</option>
+                @endif
+            @endforeach
+        </datalist>
+    @error('supir')
+        {{ $message }}
+    @enderror
+    <br>
 
     <input type="submit" value="Sewa"><br>
     @if(session()->has('error'))

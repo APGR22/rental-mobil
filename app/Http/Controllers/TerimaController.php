@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Terima;
-use App\Models\Sewa;
 use App\Http\Controllers\SewaController;
 use App\Http\Controllers\MobilController;
+use App\Http\Controllers\SupirController;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Session;
-use URL;
 
 class TerimaController extends Controller
 {
@@ -72,6 +69,11 @@ class TerimaController extends Controller
     {
         $sewa = SewaController::getWithColumn('mobil', $request->mobil);
 
+        if ($sewa->supir !== null)
+        {
+            SupirController::updateColumn($sewa->supir, 'sedang_bekerja', false);
+        }
+
         if ($request->denda !== '0')
         {
             DendaController::store(
@@ -88,7 +90,7 @@ class TerimaController extends Controller
         Terima::insert([
             'penyewa' => $sewa->penyewa,
             'mobil' => $sewa->mobil,
-            'dengan_supir' => $sewa->dengan_supir,
+            'supir' => $sewa->supir,
             'tanggal_sewa' => $sewa->tanggal_sewa,
             'tanggal_kembali' => $tanggal_dikembalikan,
             'diskon' => $sewa->diskon,

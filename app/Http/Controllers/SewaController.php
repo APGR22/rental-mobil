@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Sewa;
 use App\Models\Mobil;
+use App\Models\Supir;
 use App\Http\Controllers\MobilController;
+use App\Http\Controllers\SupirController;
 use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 
 class SewaController extends Controller
@@ -27,7 +28,8 @@ class SewaController extends Controller
     public function create()
     {
         $mobils = Mobil::all();
-        return view('main.sewa.sewa', compact('mobils'));
+        $supirs = Supir::all();
+        return view('main.sewa.sewa', compact('mobils', 'supirs'));
     }
 
     public function review(Request $request)
@@ -47,10 +49,19 @@ class SewaController extends Controller
 
         $error = null;
 
-        $sewa = MobilController::getWithTipe($request->mobil);
-        if ($sewa->sedang_disewa || $sewa->sedang_perbaikan)
+        $mobil = MobilController::getWithTipe($request->mobil);
+        if ($mobil->sedang_disewa || $mobil->sedang_perbaikan)
         {
             $error['mobil'] = 'Mobil ini tidak ada dalam daftar';
+        }
+
+        if ($request->supir !== null)
+        {
+            $supir = SupirController::getWithNama($request->supir);
+            if ($supir->sedang_bekerja)
+            {
+                $error['supir'] = 'Supir ini tidak ada dalam daftar';
+            }
         }
 
         $tanggal_sewa = Carbon::createFromFormat('Y-m-d', $request->tanggal_sewa);
@@ -69,7 +80,6 @@ class SewaController extends Controller
         }
 
         $data = $request->all();
-        $data['supir'] = $request->supir === 'on';
         return view('main.sewa.review', compact('data'));
     }
 
@@ -100,7 +110,7 @@ class SewaController extends Controller
         Sewa::insert([
             'penyewa' => Auth::user()->nama,
             'mobil' => $request->mobil,
-            'dengan_supir' => $request->supir === '1' ? true : false,
+            'supir' => $request->supir,
             'tanggal_sewa' => $request->tanggal_sewa,
             'tanggal_kembali' => $request->tanggal_kembali,
             'dp' => $dp, 
@@ -109,6 +119,10 @@ class SewaController extends Controller
         ]);
 
         MobilController::updateColumn($request->mobil, 'sedang_disewa', true);
+        if ($request->supir !== null)
+        {
+            SupirController::updateColumn($request->supir, 'sedang_bekerja', true);
+        }
 
         return redirect()->route('index');
     }

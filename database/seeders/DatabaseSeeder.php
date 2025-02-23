@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\AkunSeeder;
 use Database\Seeders\MobilSeeder;
+use Database\Seeders\SupirSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,5 +21,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(AkunSeeder::class);
         $this->call(MobilSeeder::class);
+        $this->call(SupirSeeder::class);
     }
 }

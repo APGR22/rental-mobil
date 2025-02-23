@@ -12,7 +12,7 @@ class Sewa extends Model
     protected $fillable = [
         'penyewa', /*Ditangani oleh sistem dengan 'nama'*/
         'mobil',
-        'dengan_supir', /*0: tanpa supir*/
+        'supir', /*nama supir*/
         'tanggal_sewa',
         'tanggal_kembali',
         'dp',
@@ -21,7 +21,6 @@ class Sewa extends Model
     ];
 
     protected $casts = [
-        'dengan_supir' => 'boolean',
         'tanggal_sewa' => 'date',
         'tanggal_kembali' => 'date',
         'first_time' => 'boolean',

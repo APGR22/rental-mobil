@@ -18,31 +18,32 @@ class AkunSeeder extends Seeder
     public function run()
     {
         DB::table('akuns')->insert([
-            'no_ktp' => '11',
-            'nama' => 'azhar',
-            'tanggal_lahir' => Carbon::createFromDate(2007, 12, 22),
-            'email' => 'agz2561gg@gmail.com',
-            'no_telp' => '0123456789',
-            'username' => 'a',
-            'password' => Hash::make('1'),
-            'is_admin' => false,
-            'first_time' => true,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('akuns')->insert([
-            'no_ktp' => '11',
-            'nama' => 'azhar',
-            'tanggal_lahir' => Carbon::createFromDate(2007, 12, 22),
-            'email' => 'agz2561gg@gmail.com',
-            'no_telp' => '0123456789',
-            'username' => 'admin',
-            'password' => Hash::make('admin#12345'),
-            'is_admin' => true,
-            'first_time' => true,
-            'created_at' => now(),
-            'updated_at' => now()
+            [
+                'no_ktp' => '11',
+                'nama' => 'azhar',
+                'tanggal_lahir' => Carbon::createFromDate(2007, 12, 22),
+                'email' => 'agz2561gg@gmail.com',
+                'no_telp' => '0123456789',
+                'username' => 'a',
+                'password' => Hash::make('1'),
+                'is_admin' => false,
+                'first_time' => true,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'no_ktp' => '11',
+                'nama' => 'azhar',
+                'tanggal_lahir' => Carbon::createFromDate(2007, 12, 22),
+                'email' => 'agz2561gg@gmail.com',
+                'no_telp' => '0123456789',
+                'username' => 'admin',
+                'password' => Hash::make('admin#12345'),
+                'is_admin' => true,
+                'first_time' => true,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
         ]);
     }
 }

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->id();
             $table->string('penyewa');
             $table->string('mobil');
-            $table->boolean('dengan_supir');
+            $table->string('supir')->nullable();
             $table->date('tanggal_sewa');
             $table->date('tanggal_kembali');
             $table->unsignedInteger('dp');
