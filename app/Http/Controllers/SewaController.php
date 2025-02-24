@@ -50,7 +50,7 @@ class SewaController extends Controller
         $error = null;
 
         $mobil = MobilController::getWithTipe($request->mobil);
-        if ($mobil->sedang_disewa || $mobil->sedang_perbaikan)
+        if ($mobil === null || ($mobil->sedang_disewa || $mobil->sedang_perbaikan))
         {
             $error['mobil'] = 'Mobil ini tidak ada dalam daftar';
         }
@@ -58,7 +58,7 @@ class SewaController extends Controller
         if ($request->supir !== null)
         {
             $supir = SupirController::getWithNama($request->supir);
-            if ($supir->sedang_bekerja)
+            if ($supir === null || $supir->sedang_bekerja)
             {
                 $error['supir'] = 'Supir ini tidak ada dalam daftar';
             }
